@@ -60,4 +60,8 @@ apply, call 메서드는 함수를 호출하면서 첫 번째 인수로 전달�
 
 * bind 메서드는 this와 메서드 내부의 중첩 함수 또는 콜백 함수의 this가 불일치하는 문제를 해결하기 위해 유용하게 사용된다.
 
-
+<br/>
+<p align="center">
+<img src="./img/this.PNG" width="60%" height="40%" align="center" title="this" alt="this"></img>
+</p>
+<br/>
