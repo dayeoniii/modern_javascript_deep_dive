@@ -88,4 +88,59 @@ Map 객체는 키와 값의 쌍으로 이루어진 컬렉션이다. Map 객체�
 <p align="center">
 <img src="./img/Map과 객체 차이.PNG" width="60%" height="18%" align="center" title="Map과 객체 차이" alt="Map과 객체 차이"></img>
 </p>
+
+### 37.2.1 Map   
+Map 객체는 Map 생성자 함수로 생성한다. 인수를 전달하지 않으면 빈 Map 객체가 생성된다.   
+Map 생성자 함수는 이터러블을 인수로 전달받아 Map 객체를 생성한다. 이때 인수로 전달되는 이터러블은 키와 값의 쌍으로 이루어진 요소로 구성되어야 한다.   
+```javascript
+const map1 = new Map([['key1', 'value1'], ['key2', 'value2']]);
+console.log(map1); //Map(2) => {"key1" => "value1", "key2" => "value2"}   
+
+const map2 = new Map([1, 2]); //TypeError: Iterator value 1 is not an entry object
+```
+Map 생성자 함수의 인수로 전달한 이터러블에 중복된 키를 갖는 요소가 존재하면 값이 덮어써진다. (Map 객체에는 중복된 키를 갖는 요소가 존재할 수 없다)
+
+### 37.2.2 요소 개수 확인   
+Map 객체의 요소 개수를 확인할 때는 Map.prototype.size 프로퍼티를 사용한다.   
+ize 프로퍼티는 setter 함수 없이 getter 함수만 존재하는 접근자 프로퍼티다. 따라서 size 프로퍼티에 숫자를 할당하여 객체 요소 개수 변경 불가.
+
+### 37.2.3 요소 추가   
+Map 객체에 요소를 추가할 때는 Map.prototype.set 메서드를 사용한다.   
+```javascript
+const map1 = new Map();
+console.log(map);  // Map(0) {}
+
+map.set('key1', 'value1');
+console.log(map); // Map(1) {"key1" => "value1"}
+```
+set 메서드는 새로운 요소가 추가된 Map 객체를 반환한다. 따라서 set 메서드를 호출한 후에 set 메서드를 연속적으로 호출할 수 있다.   
+중복된 키를 갖는 요소를 추가하면 값이 덮어써진다.   
+
+### 37.2.4 요소 취득   
+Map 객체에서 특정 요소를 취득하려면 Map.prototype.get 메서드를 사용한다.   
+get 메서드의 인수로 키를 전달하면 Map 객체에서 인수로 전달한 키를 갖는 값을 반환한다. (전달한 키를 갖는 요소가 없으면 undefined 반환)   
+
+### 37.2.5 요소 존재 여부 확인   
+Map 객체에 특정 요소가 존재하는지 확인하려면 Map.prototype.has 메서드를 사용한다.   
+has 메서드는 특정 요소의 존재 여부를 나타내는 불리언 값을 반환한다.
+
+### 37.2.6 요소 삭제   
+Map 객체의 요소를 삭제하려면 Map.prototype.delete 메서드를 사용한다. 삭제 성공 여부를 나타내는 불리언 값을 반환한다.
+
+### 37.2.7 요소 일괄 삭제   
+Map 객체의 요소를 일괄 삭제하려면 Map.prototype.clear 메서드를 사용한다. clear 메서드는 언제나 undefined를 반환한다.   
+
+### 37.2.8 요소 순회   
+Map 객체의 요소를 순회하려면 Map.prototype.forEach 메서드를 사용한다.   
+Map.prototype.forEach 메서드는 Array.prototype.forEach와 유사하게 콜백 함수와 forEach 메서드의 콜백 함수 내부에서 this로 사용될 객체(옵션)를 인수로 전달한다. 콜백 함수는 다음과 같이 3개의 인수를 전달받는다.
+1. 첫번째 인수 : 현재 순회 중인 요소값
+2. 두번째 인수 : 현재 순회 중인 요소키
+3. 세번째 인수 : 현재 순회 중인 Map 객체 자체
+
+* Map 객체는 이터러블이다. 따라서 for ... of문으로 순회할 수 있으며, 스프레드 문법과 배열 디스트럭처링의 대상이 될 수도 있다.   
+Map 객체는 이터러블이면서 동시에 이터레이터인 객체를 반환하는 메서드를 제공한다.
+<br/>
+<p align="center">
+<img src="./img/Map 메서드.PNG" width="60%" height="18%" align="center" title="Map 메서드" alt="Map 메서드"></img>
+</p>
 <br/>
