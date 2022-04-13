@@ -10,13 +10,14 @@ DOM은 HTML 문서의 계층적 구조와 정보를 표현하여 이를 제어�
 HTML 요소는 HTML 문서를 구성하는 개별적인 요소를 의미한다.   
 <br/>
 <p align="center">
-<img src="./img/HTML 요소의 구조.PNG" width="65%" height="25%" align="center" title="HTML 요소의 구조" alt="HTML 요소의 구조"></img>
+<img src="./img/HTML 요소의 구조.PNG" width="50%" height="12%" align="center" title="HTML 요소의 구조" alt="HTML 요소의 구조"></img>
 </p>
 <br/>
 HTML 요소는 렌더링 엔진에 의해 파싱되어 DOM을 구성하는 요소 노드 객체로 변환된다. 이때 HTML 요소의 어트리뷰트는 어트리뷰트 노드로, HTML 요소의 텍스트 콘텐츠는 텍스트 노드로 변환된다.
+
 <br/>
 <p align="center">
-<img src="./img/HTML 요소와 노드 객체.PNG" width="50%" height="30%" align="center" title="HTML 요소와 노드 객체" alt="HTML 요소와 노드 객체"></img>
+<img src="./img/HTML 요소와 노드 객체.PNG" width="38%" height="17%" align="center" title="HTML 요소와 노드 객체" alt="HTML 요소와 노드 객체"></img>
 </p>
 
 HTML 요소 간에는 중첩 관계에 의해 계층적인 부자 관계가 형성된다. 이러한 HTML 요소 간의 부자 관계를 반영하여 HTML 문서의 구성 요소인 HTML 요소를 객체화한 모든 노드 객체들을 트리 자료 구조로 구성한다.   
