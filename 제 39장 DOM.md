@@ -104,3 +104,75 @@ getElementsByTagName, getElementsByClassName 메서드가 반환하는 HTMLColle
 HTMLCollection 객체의 부작용을 해결하기 위해 getElementsByTagName, getElementsByClassName 메서드 대신 querySelectorAll 메서드(NodeList 객체를 반환)를 사용하는 방법도 있다. NodeList 객체는 실시간으로 노드 객체의 상태 변경을 반영하지 않는 객체다.
 
 노드 객체의 상태 변경과 상관없이 안전하게 DOM 컬렉션을 사용하려면 HTMLCollection이나 NodeList 객체를 배열로 변환하여 사용하는 것을 권장한다.
+
+39.3 노드 탐색
+---------------------------
+요소 노드를 취득한 다음, 취득한 요소 노드를 기점으로 DOM 트리의 노드를 옮겨 다니며 부모, 형제, 자식 노드 등을 탐색해야 할 때가 있다.   
+DOM 트리 상의 노드를 탐색할 수 있도록 Node, Element 인터페이스는 트리 탐색 프로퍼티를 제공한다.   
+노드 탐색 프로퍼티는 모두 접근자 프로퍼티다. 단, 노드 탐색 프로퍼티는 setter없이 getter만 존재하여 참조만 가능한 읽기 전용 접근자 프로퍼티다.   
+<br/>
+<p align="center">
+<img src="./img/읽기 전용 접근자 프로퍼티.PNG" width="40%" height="52%" align="center" title="읽기 전용 접근자 프로퍼티" alt="읽기 전용 접근자 프로퍼티"></img>
+</p>
+
+### 39.3.1 공백 텍스트 노드   
+HTML 요소 사이의 스페이스, 탭, 줄바꿈 등의 공백 문자는 텍스트 노드를 생성한다. 이를 공백 텍스트 노드라 한다.   
+
+### 39.3.2 자식 노드 탐색   
+자식 노드를 탐색하기 위해서는 다음과 같은 노드 탐색 프로퍼티를 사용한다.   
+<br/>
+<p align="center">
+<img src="./img/자식 노드 탐색 프로퍼티1.PNG" width="55%" height="22%" align="center" title="자식 노드 탐색 프로퍼티1" alt="자식 노드 탐색 프로퍼티1"></img>
+</p>
+<p align="center">
+<img src="./img/자식 노드 탐색 프로퍼티2.PNG" width="55%" height="38%" align="center" title="자식 노드 탐색 프로퍼티2" alt="자식 노드 탐색 프로퍼티2"></img>
+</p>
+
+### 39.3.3 자식 노드 존재 확인   
+자식 노드가 존재하는지 확인하려면 Node.prototype.hasChildNodes 메서드를 사용한다.   
+자식 노드 존재 여부에 따라 불리언 값을 반환한다. (텍스트 노드를 포함하여 자식 노드의 존재를 확인)
+
+### 39.3.4 요소 노드의 텍스트 노드 탐색   
+요소 노드의 텍스트 노드는 요소 노드의 자식 노드다. 따라서 요소 노드의 텍스트 노드는 firstChild 프로퍼티로 접근할 수 있다.   
+
+### 39.3.5 부모 노드 탐색   
+부모 노드를 탐색하려면 Node.prototype.parentNode 프로퍼티를 사용한다.   
+텍스트 노드는 DOM 트리의 최종단 노드인 리프 노드이므로 부모 노드가 텍스트 노드인 경우는 없다.
+
+### 39.3.6 형제 노드 탐색   
+부모 노드가 같은 형제 노드를 탐색하려면 다음과 같은 노드 탐색 프로퍼티를 사용한다.   
+단, 어트리뷰트 노드는 요소 노드와 연결되어 있지만 부모 노드가 같은 형제 노드가 아니기 때문에 반환되지 않는다.   
+즉, 아래 프로퍼티는 텍스트 노드 또는 요소 노드만 반환한다.   
+<br/>
+<p align="center">
+<img src="./img/형제 노드 탐색 프로퍼티1.PNG" width="55%" height="22%" align="center" title="형제 노드 탐색 프로퍼티1" alt="형제 노드 탐색 프로퍼티1"></img>
+</p>
+<p align="center">
+<img src="./img/형제 노드 탐색 프로퍼티2.PNG" width="55%" height="38%" align="center" title="형제 노드 탐색 프로퍼티2" alt="형제 노드 탐색 프로퍼티2"></img>
+</p>
+
+39.4 노드 정보 취득
+------------------------
+<p align="center">
+<img src="./img/노드 정보 프로퍼티.PNG" width="55%" height="24%" align="center" title="노드 정보 프로퍼티" alt="노드 정보 프로퍼티"></img>
+</p>
+
+39.5 요소 노드의 텍스트 조작
+------------------------------
+### 39.5.1 nodeValue   
+지금까지 살펴본 노드 탐색, 노드 정보 프로퍼티는 모두 읽기 전용 접근자 프로퍼티다.   
+Node.prototype.nodeValue 프로퍼티는 setter와 getter 모두 존재하는 접근자 프로퍼티다. (참조와 할당 모두 가능)   
+노드 객체의 nodeValue 프로퍼티를 참조하면 노드 객체의 값을 반환한다.(텍스트 노드의 텍스트)
+
+### 39.5.2 textContent   
+Node.prototype.textContent 프로퍼티는 setter와 getter 모두 존재하는 접근자 프로퍼티로서 요소 노드의 텍스트와 자손 노드의 텍스트를 모두 취득하거나 변경한다. 요소 노드의 textContent 프로퍼티를 참조하면 요소 노드의 콘텐츠 영역 내의 텍스트를 모두 반환한다. 
+
+39.6 DOM 조작
+----------------------
+DOM 조작은 새로운 노드를 생성하여 DOM에 추가하거나 기존 노드를 삭제 또는 교체하는 것을 말한다.  
+DOM 조작에 의해 DOM에 새로운 노드가 추가되거나 삭제되면 리플로우와 리페인트가 발생하는 원인이 되므로 성능에 영향을 준다.
+
+### 39.6.1 innerHTML   
+Element.prototype.innerHtml 프로퍼티는 setter와 getter 모두 존재하는 접근자 프로퍼티로서 요소 노드의 HTML 마크업을 취득하거나 변경한다.   
+요소 노드의 innerHTML 프로퍼티를 참조하면 요소 노드의 콘텐츠 영역 내에 포함된 모든 HTML 마크업을 문자열로 반환한다. 
+
